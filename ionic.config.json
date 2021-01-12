@@ -1,0 +1,7 @@
+{
+  "name": "zemb-edouard_todo-list",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
