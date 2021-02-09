@@ -22,3 +22,9 @@
 .container a {
   text-decoration: none;
 }
+
+.item-done {
+  text-decoration: line-through;
+  color: #8c8c8c;
+  opacity: 0.5;
+}
