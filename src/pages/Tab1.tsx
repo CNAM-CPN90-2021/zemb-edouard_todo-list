@@ -24,7 +24,7 @@ const Tab1: React.FC = () => {
         <IonList>
           {todoElements.map((element) => (
             <TodoListItem
-              key={todoElements.indexOf(element)}
+              key={element.key}
               todoItem={element.label}
             ></TodoListItem>
           ))}

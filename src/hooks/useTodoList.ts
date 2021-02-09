@@ -5,6 +5,7 @@ import { useStorage } from '@ionic/react-hooks/storage';
 export interface ToDoElement {
   label: string | undefined;
   status: boolean;
+  key: number;
 }
 
 export function useTodoList() {
@@ -14,7 +15,8 @@ export function useTodoList() {
   const createTodoElement = (text: string | undefined) => {
     const newTodoElement = [{
       label: text,
-      status: false
+      status: false,
+      key: todoElements.length
     }, ...todoElements];
     setTodoElements(newTodoElement)
   };
