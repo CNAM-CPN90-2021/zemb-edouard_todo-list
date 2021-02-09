@@ -14,8 +14,12 @@ const TodoListItem: React.FC<ContainerProps> = ({ todoItem }) => {
 
   return (
     <IonItem>
-      <IonLabel>{ todoItem }</IonLabel>
-      <IonCheckbox checked={checked} onIonChange={e => setChecked(e.detail.checked)} slot="start"/>
+      <IonLabel>{todoItem}</IonLabel>
+      <IonCheckbox checked={checked} onIonChange={e => {
+        setChecked(e.detail.checked);
+        
+      }
+      } slot="start" />
     </IonItem>
   )
 };
