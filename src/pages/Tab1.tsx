@@ -6,11 +6,10 @@ import {
   IonItem,
   IonInput,
   IonFooter,
-  IonList,
 } from "@ionic/react";
-import TodoListItem from "../components/TodoListItem";
 import { useTodoList } from "../hooks/useTodoList";
 import "./Tab1.css";
+import TodoList from "../components/TodoList";
 
 const Tab1: React.FC = () => {
   const [text, setText] = useState<string>();
@@ -21,14 +20,7 @@ const Tab1: React.FC = () => {
     <IonPage>
       <IonHeader></IonHeader>
       <IonContent fullscreen>
-        <IonList>
-          {todoElements.map((element) => (
-            <TodoListItem
-              key={element.key}
-              todoItem={element.label}
-            ></TodoListItem>
-          ))}
-        </IonList>
+        <TodoList todoElements={todoElements}></TodoList>
       </IonContent>
       <IonFooter>
         <IonItem>

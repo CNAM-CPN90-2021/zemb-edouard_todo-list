@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import TodoListItem from '../components/TodoListItem';
+import ItemTodo from '../components/ItemTodo';
 import './Tab2.css';
 
 const Tab2: React.FC = () => {
