@@ -1,7 +1,5 @@
 export interface ToDoElement {
     label: string | undefined;
-    status: boolean;
+    checked: boolean;
     key: number;
-    filepath?: string;
-    webviewPath?: string;
   }
