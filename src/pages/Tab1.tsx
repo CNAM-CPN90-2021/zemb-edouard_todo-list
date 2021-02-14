@@ -7,7 +7,6 @@ import {
   IonInput,
   IonFooter,
   IonList,
-  IonLabel,
   IonCheckbox,
   IonIcon,
   IonButton,
@@ -41,6 +40,7 @@ const Tab1: React.FC<ContainerProps> = ({ filtered }) => {
             .map((todoElement) => (
               <IonItem key={todoElement.key}>
                 <IonInput
+                  readonly={todoElement.checked}
                   value={todoElement.label}
                   className={todoElement.checked ? "item-done" : ""}
                   onIonChange={(e) =>
