@@ -9,9 +9,13 @@ import {
   IonList,
   IonLabel,
   IonCheckbox,
+  IonButton,
+  IonIcon,
+  IonFabButton,
 } from "@ionic/react";
 import "./Tab1.css";
 import { useTodoList } from "../hooks/useTodoList";
+import { trashBinOutline } from 'ionicons/icons';
 
 interface ContainerProps {
   filtered: boolean;
@@ -45,6 +49,9 @@ const Tab1: React.FC<ContainerProps> = ({ filtered }) => {
                   }
                   slot="start"
                 />
+                <IonFabButton color="danger" size="small">
+                  <IonIcon icon={trashBinOutline}></IonIcon>
+                </IonFabButton >
               </IonItem>
             ))}
         </IonList>
