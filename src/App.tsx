@@ -63,6 +63,7 @@ const App: React.FC = () => {
                 <IonChip>
                   <IonLabel color="secondary">
                     {
+                      // TODO: Problème d'actualisation de la valeur
                       todoElements.filter((item) => item.checked !== true)
                         .length
                     }
