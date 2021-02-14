@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
-  IonChip,
+  IonBadge,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
@@ -58,18 +58,13 @@ const App: React.FC = () => {
           </IonRouterOutlet>
           <IonTabBar slot="top">
             <IonTabButton tab="tab1" href="/tab1">
-              <IonLabel>
-                À faire{" "}
-                <IonChip>
-                  <IonLabel color="secondary">
-                    {
-                      // TODO: Problème d'actualisation de la valeur
-                      todoElements.filter((item) => item.checked !== true)
-                        .length
-                    }
-                  </IonLabel>
-                </IonChip>
-              </IonLabel>
+              <IonLabel>À faire</IonLabel>
+              <IonBadge color="primary">
+                {
+                  // TODO: Problème d'actualisation de la valeur
+                  todoElements.filter((item) => item.checked !== true).length
+                }
+              </IonBadge>
             </IonTabButton>
             <IonTabButton tab="tab2" href="/tab2">
               <IonLabel>Tous</IonLabel>
