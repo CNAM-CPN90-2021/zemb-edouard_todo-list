@@ -1,5 +1,5 @@
 export interface ToDoElement {
-    label: string | undefined;
+    label: string | null | undefined;
     checked: boolean;
     key: number;
   }

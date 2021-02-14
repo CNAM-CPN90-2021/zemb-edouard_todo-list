@@ -40,9 +40,16 @@ const Tab1: React.FC<ContainerProps> = ({ filtered }) => {
             )
             .map((todoElement) => (
               <IonItem key={todoElement.key}>
-                <IonLabel className={todoElement.checked ? "item-done" : ""}>
-                  {todoElement.label}
-                </IonLabel>
+                <IonInput
+                  value={todoElement.label}
+                  className={todoElement.checked ? "item-done" : ""}
+                  onIonChange={(e) =>
+                    updateTodoElement({
+                      ...todoElement,
+                      label: e.detail.value,
+                    })
+                  }
+                ></IonInput>
                 <IonCheckbox
                   checked={todoElement.checked}
                   onIonChange={(e) =>

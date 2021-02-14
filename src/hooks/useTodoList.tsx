@@ -46,12 +46,12 @@ export const useTodoList = () => {
   }
 
   function removeTodoElement(todoElement: ToDoElement) {
-    console.log(todoElement);
     const newtodoElements = todoElements.filter(
       (item) => item.key != todoElement.key
     );
     setTodoElements(newtodoElements);
   }
+
   return {
     todoElements,
     createTodoElement,
