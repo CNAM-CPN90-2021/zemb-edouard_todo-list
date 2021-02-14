@@ -23,8 +23,7 @@ const Tab1: React.FC<ContainerProps> = ({ filtered }) => {
 
   return (
     <IonPage>
-      <IonHeader>
-      </IonHeader>
+      <IonHeader></IonHeader>
       <IonContent fullscreen>
         <IonList>
           {todoElements
@@ -53,9 +52,14 @@ const Tab1: React.FC<ContainerProps> = ({ filtered }) => {
       <IonFooter>
         <IonItem>
           <IonInput
-            value={text}
             placeholder="Qu'avez vous en tête ?"
             onInput={(event) => setText((event.target as any).value)}
+            onKeyPress={(event) => {
+              console.log(event)
+              if (event.key === "Enter") {
+                createTodoElement(text);
+              }
+            }}
           ></IonInput>
           <IonItem
             button
