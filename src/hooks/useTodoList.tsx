@@ -5,7 +5,7 @@ import { useStorage } from "@capacitor-community/react-hooks/storage";
 export const useTodoList = () => {
   const [todoElements, setTodoElements] = useState<ToDoElement[]>([]);
   const { get, set } = useStorage();
-  
+
   // ce code s'executera seulement à l'initialisation du composant
   useEffect(() => {
     async function getListFromStorage() {
