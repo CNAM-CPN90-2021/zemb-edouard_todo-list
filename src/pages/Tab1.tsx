@@ -14,7 +14,10 @@ import "./Tab1.css";
 import { useStorage } from "@capacitor-community/react-hooks/storage";
 import { ToDoElement } from "../interfaces/ToDoElement";
 
-const Tab1: React.FC = () => {
+interface ContainerProps {
+  filtered: boolean;
+}
+const Tab1: React.FC<ContainerProps> = ({ filtered }) => {
   const [text, setText] = useState<string>();
   const [todoElements, setTodoElements] = useState<ToDoElement[]>([]);
   const { get, set } = useStorage();
@@ -47,10 +50,10 @@ const Tab1: React.FC = () => {
     setTodoElements(newTodoElements);
   }
 
-  function updateTodoElement(todoElement: ToDoElement) {
+  function updateTodoElement(updatedTodoElement: ToDoElement) {
     const newtodoElements = todoElements.map((item) => {
-      if (item.key === todoElement.key) {
-        return todoElement;
+      if (item.key === updatedTodoElement.key) {
+        return updatedTodoElement;
       }
       return item;
     });
@@ -63,21 +66,25 @@ const Tab1: React.FC = () => {
       <IonHeader></IonHeader>
       <IonContent fullscreen>
         <IonList>
-          {todoElements.map((todoElement) => (
-            <IonItem key={todoElement.key}>
-              <IonLabel className={todoElement.checked ? "item-done" : ""}>
-                {todoElement.label}
-              </IonLabel>
-              <IonCheckbox
-                checked={todoElement.checked}
-                onIonChange={(e) => updateTodoElement({
-                  ...todoElement,
-                  checked: e.detail.checked,
-                })}
-                slot="start"
-              />
-            </IonItem>
-          ))}
+          {todoElements
+            .filter((todoElement) => filtered ? todoElement.checked != true : todoElement)
+            .map((todoElement) => (
+              <IonItem key={todoElement.key}>
+                <IonLabel className={todoElement.checked ? "item-done" : ""}>
+                  {todoElement.label}
+                </IonLabel>
+                <IonCheckbox
+                  checked={todoElement.checked}
+                  onIonChange={(e) =>
+                    updateTodoElement({
+                      ...todoElement,
+                      checked: e.detail.checked,
+                    })
+                  }
+                  slot="start"
+                />
+              </IonItem>
+            ))}
         </IonList>
       </IonContent>
       <IonFooter>
