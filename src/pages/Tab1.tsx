@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   IonContent,
   IonHeader,
@@ -11,63 +11,26 @@ import {
   IonCheckbox,
 } from "@ionic/react";
 import "./Tab1.css";
-import { useStorage } from "@capacitor-community/react-hooks/storage";
-import { ToDoElement } from "../interfaces/ToDoElement";
+import { useTodoList } from "../hooks/useTodoList";
 
 interface ContainerProps {
   filtered: boolean;
 }
+
 const Tab1: React.FC<ContainerProps> = ({ filtered }) => {
   const [text, setText] = useState<string>();
-  const [todoElements, setTodoElements] = useState<ToDoElement[]>([]);
-  const { get, set } = useStorage();
-
-  // ce code s'executera seulement à l'initialisation du composant
-  useEffect(() => {
-    async function getListFromStorage() {
-      const jsonList = await get("list");
-      if (jsonList) {
-        setTodoElements(JSON.parse(jsonList));
-      }
-    }
-    getListFromStorage();
-  }, []);
-
-  // ce code s'executera seulement à chaque fois que la liste est mise à jour
-  useEffect(() => {
-    set("list", JSON.stringify(todoElements));
-  }, [todoElements]);
-
-  function createTodoElement(text: string | undefined) {
-    const newTodoElements = [
-      {
-        label: text,
-        checked: false,
-        key: todoElements.length,
-      },
-      ...todoElements,
-    ];
-    setTodoElements(newTodoElements);
-  }
-
-  function updateTodoElement(updatedTodoElement: ToDoElement) {
-    const newtodoElements = todoElements.map((item) => {
-      if (item.key === updatedTodoElement.key) {
-        return updatedTodoElement;
-      }
-      return item;
-    });
-
-    setTodoElements(newtodoElements);
-  }
+  const { todoElements, createTodoElement, updateTodoElement } = useTodoList();
 
   return (
     <IonPage>
-      <IonHeader></IonHeader>
+      <IonHeader>
+      </IonHeader>
       <IonContent fullscreen>
         <IonList>
           {todoElements
-            .filter((todoElement) => filtered ? todoElement.checked != true : todoElement)
+            .filter((todoElement) =>
+              filtered ? todoElement.checked !== true : todoElement
+            )
             .map((todoElement) => (
               <IonItem key={todoElement.key}>
                 <IonLabel className={todoElement.checked ? "item-done" : ""}>
