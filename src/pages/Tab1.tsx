@@ -9,13 +9,12 @@ import {
   IonList,
   IonLabel,
   IonCheckbox,
-  IonButton,
   IonIcon,
-  IonFabButton,
+  IonButton,
 } from "@ionic/react";
 import "./Tab1.css";
 import { useTodoList } from "../hooks/useTodoList";
-import { trashBinOutline } from 'ionicons/icons';
+import { closeCircleOutline } from "ionicons/icons";
 
 interface ContainerProps {
   filtered: boolean;
@@ -23,7 +22,12 @@ interface ContainerProps {
 
 const Tab1: React.FC<ContainerProps> = ({ filtered }) => {
   const [text, setText] = useState<string>();
-  const { todoElements, createTodoElement, updateTodoElement } = useTodoList();
+  const {
+    todoElements,
+    createTodoElement,
+    updateTodoElement,
+    removeTodoElement,
+  } = useTodoList();
 
   return (
     <IonPage>
@@ -49,9 +53,14 @@ const Tab1: React.FC<ContainerProps> = ({ filtered }) => {
                   }
                   slot="start"
                 />
-                <IonFabButton color="danger" size="small">
-                  <IonIcon icon={trashBinOutline}></IonIcon>
-                </IonFabButton >
+                <IonButton
+                  color="danger"
+                  size="small"
+                  onClick={() => removeTodoElement(todoElement)}
+                  slot="end"
+                >
+                  <IonIcon icon={closeCircleOutline}></IonIcon>
+                </IonButton>
               </IonItem>
             ))}
         </IonList>
