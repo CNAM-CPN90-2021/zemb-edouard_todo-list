@@ -40,6 +40,33 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
+            {/*
+              Il y a un bug gênant : les données ne sont pas synchronisées entre les onglets 
+
+              Car tes différentes listes ne partagent pas la même instance de useTodoList()
+
+              Et du coup ne se synchronisent entre elles QUE quand on rehcarge la page (car elles partagent le localStorage)
+
+              la solution est simple : 
+
+              function App() {
+                const todoList = useTodoList()
+
+                return (
+                  <>
+                    <Route
+                      path="/tab1"
+                      component={() => <Tab1 todoList={todoList} filtered={true}></Tab1>}
+                    />
+                    <Route
+                      path="/tab2"
+                      component={() => <Tab1 todoList={todoList} filtered={false}></Tab1>}
+                    />
+                  </>
+                )
+
+              }
+            */}
             <Route
               path="/tab1"
               component={() => <Tab1 filtered={true}></Tab1>}
@@ -62,6 +89,9 @@ const App: React.FC = () => {
               <IonBadge color="primary">
                 {
                   // TODO: Problème d'actualisation de la valeur
+                  /*
+                    c'est parce que ce composant et ta liste ne partagent pas la même instance de useTodoList()
+                  */
                   todoElements.filter((item) => item.checked !== true).length
                 }
               </IonBadge>

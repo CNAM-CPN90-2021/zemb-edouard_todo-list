@@ -6,6 +6,9 @@ export const useTodoList = () => {
   const [todoElements, setTodoElements] = useState<ToDoElement[]>([]);
   const { get, set } = useStorage();
 
+  /*
+    👍
+  */
   // ce code s'executera seulement à l'initialisation du composant
   useEffect(() => {
     async function getListFromStorage() {
@@ -17,6 +20,9 @@ export const useTodoList = () => {
     getListFromStorage();
   }, []);
 
+  /*
+    👍
+  */
   // ce code s'executera seulement à chaque fois que la liste est mise à jour
   useEffect(() => {
     set("list", JSON.stringify(todoElements));
@@ -34,6 +40,9 @@ export const useTodoList = () => {
     setTodoElements(newTodoElements);
   }
 
+  /*
+    👍
+  */
   function updateTodoElement(updatedTodoElement: ToDoElement) {
     const newtodoElements = todoElements.map((item) => {
       if (item.key === updatedTodoElement.key) {
@@ -45,6 +54,9 @@ export const useTodoList = () => {
     setTodoElements(newtodoElements);
   }
 
+  /*
+    👍
+  */
   function removeTodoElement(todoElement: ToDoElement) {
     const newtodoElements = todoElements.filter(
       (item) => item.key != todoElement.key
